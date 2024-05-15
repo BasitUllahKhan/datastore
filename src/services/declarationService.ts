@@ -1,6 +1,6 @@
 // services/declarationService.ts
 
-import { PrismaClient, Declaration } from "@prisma/client";
+import { Declaration, PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -26,11 +26,11 @@ export class DeclarationService {
     }
 
     if (!data.declarationDate) {
-      throw new Error("Declaration Date is required");
+      data.declarationDate = new Date();
     }
 
     if (!data.retrivalDate) {
-      throw new Error("Retrival Date is required");
+      data.retrivalDate = new Date();
     }
 
     return data as Declaration;

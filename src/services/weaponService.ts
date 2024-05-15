@@ -4,6 +4,7 @@ const prisma = new PrismaClient();
 
 export class WeaponService {
   async create(data: Partial<Weapon>): Promise<Weapon> {
+    
     return await prisma.weapon.create({ data: await this.validate(data) });
   }
   async validate(data: Partial<Weapon>): Promise<Weapon> {
