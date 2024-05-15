@@ -20,7 +20,14 @@ export class WeaponService {
   }
 
   async getAll(): Promise<Weapon[]> {
-    return await prisma.weapon.findMany();
+    return await prisma.weapon.findMany(
+      {
+        include: {
+            user: true
+        }
+      }
+    );
+
   }
 
   async findById(id: number): Promise<Weapon | null> {

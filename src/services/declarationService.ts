@@ -37,7 +37,14 @@ export class DeclarationService {
   }
 
   async getAll(): Promise<Declaration[]> {
-    return await prisma.declaration.findMany();
+    return await prisma.declaration.findMany(
+      {
+        include: {
+          user: true,
+          weapon: true
+        }
+      }
+    );
   }
 
   async findById(id: number): Promise<Declaration | null> {
